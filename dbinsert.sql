@@ -15,15 +15,15 @@ INSERT INTO Zakaznik VALUES (1, 1, 'ceska');
 INSERT INTO Zakaznik VALUES (2, 2, 'ceska');
 INSERT INTO Zakaznik VALUES (3, 3, 'anglicka');
 
-INSERT INTO Uzivatel VALUES (4, 'Karolina', 'Rychla', 'karolinarychla@seznam.cz', '444444444');
-INSERT INTO Uzivatel VALUES (5, 'Iveta', 'Kolcakova', 'ivetakolcakova@seznam.cz', '333333333');
+INSERT INTO Uzivatel VALUES (4, 'Karolina', 'Rychla', 'karolina@seznam.cz', '444444444');
+INSERT INTO Uzivatel VALUES (5, 'Iveta', 'Kolcakova', 'iveta@seznam.cz', '333333333');
 
 INSERT INTO Recepcni VALUES (1, 4, 'plny', '123456/7890', 'Ulice', '12345', '1', 'Mesto', '1234567890');
 INSERT INTO Recepcni VALUES (2, 5, 'castecny', '123456/7890', 'Ulice', '12345', '1', 'Mesto', '1234567890');
 
-INSERT INTO Pobyt VALUES (1, '2022-05-23', '2022-05-30', 1, 1);
-INSERT INTO Pobyt VALUES (2, '2023-02-04', '2023-02-07', 2, 1);
-INSERT INTO Pobyt VALUES (3, '2023-02-05', '2018-02-10', 3, 2);
+INSERT INTO Pobyt VALUES (1, TO_DATE('2022-05-23', 'YYYY-MM-DD'), TO_DATE('2022-05-30', 'YYYY-MM-DD'), 1, 1);
+INSERT INTO Pobyt VALUES (2, TO_DATE('2023-02-04', 'YYYY-MM-DD'), TO_DATE('2023-02-07', 'YYYY-MM-DD'), 2, 1);
+INSERT INTO Pobyt VALUES (3, TO_DATE('2023-02-05', 'YYYY-MM-DD'), TO_DATE('2018-02-10', 'YYYY-MM-DD'), 3, 2);
 
 INSERT INTO PokojVPobytu VALUES (1, 1);
 INSERT INTO PokojVPobytu VALUES (1, 2);
