@@ -15,9 +15,6 @@ FROM Zakaznik;
 SELECT DISTINCT narodnost
 FROM Zakaznik;
 
-SELECT narodnost
-FROM Zakaznik;
-
 --ktere platby byly zaplaceny v hotovosti?
 SELECT *
 FROM Platba
