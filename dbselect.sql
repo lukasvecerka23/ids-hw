@@ -8,9 +8,6 @@ SELECT * FROM Uzivatel;
 SELECT * FROM Recepcni;
 SELECT * FROM Zakaznik;
 
-SELECT *
-FROM Zakaznik;
-
 -- Z jakych zemi jsou zakaznici?
 SELECT DISTINCT narodnost
 FROM Zakaznik;
@@ -27,6 +24,15 @@ WHERE pobyt_id IN (
 SELECT pobyt_id
 FROM PokojVPobytu
 WHERE pokoj_id = 1
+);
+
+-- Existuje pobyt, ve kterem je zahrunta sluzba se snidani?
+SELECT * FROM POZADAVEKNASLUZBU;
+SELECT POBYT_ID FROM Pobyt
+WHERE EXISTS(
+SELECT *
+FROM PozadavekNaSluzbu
+WHERE POBYT_ID = Pobyt.POBYT_ID AND SLUZBA_ID = 1
 );
 
 -- ktere platby jiz byly zaplaceny?
@@ -49,4 +55,17 @@ FROM (
   SELECT pobyt_id, COUNT(*) AS pocet_pokoju
   FROM PokojVPobytu
   GROUP BY pobyt_id
-)
+);
+
+-- Kolik penez bylo utraceno v pobytech s konkretnim pokojem
+SELECT p.POKOJ_ID, p.POCET_LUZEK, SUM(pl.CASTKA) FROM pobyt pob
+JOIN platba pl ON pob.POBYT_ID = pl.POBYT_ID
+JOIN POKOJVPOBYTU Pvp on pob.POBYT_ID = Pvp.POBYT_ID
+JOIN POKOJ P on Pvp.POKOJ_ID = P.POKOJ_ID
+GROUP BY p.POKOJ_ID, p.POCET_LUZEK;
+
+-- Pobyty a celkovy pocet luzek
+SELECT pob.POBYT_ID, SUM(p.POCET_LUZEK) AS pocet_luzek FROM pobyt pob
+JOIN POKOJVPOBYTU Pvp on pob.POBYT_ID = Pvp.POBYT_ID
+JOIN POKOJ P on Pvp.POKOJ_ID = P.POKOJ_ID
+GROUP BY pob.POBYT_ID;
