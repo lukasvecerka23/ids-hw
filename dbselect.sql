@@ -69,3 +69,25 @@ SELECT pob.POBYT_ID, SUM(p.POCET_LUZEK) AS pocet_luzek FROM pobyt pob
 JOIN POKOJVPOBYTU Pvp on pob.POBYT_ID = Pvp.POBYT_ID
 JOIN POKOJ P on Pvp.POKOJ_ID = P.POKOJ_ID
 GROUP BY pob.POBYT_ID;
+
+-- dotaz, ktery zaradi pobyt do kategorie podle poctu sluzeb
+-- pokud mel stejne nebo vice sluzeb nez prumer -> nadprumerna
+-- pokud mel mene sluzeb nez prumer -> podprumerna
+WITH
+  celkovy_pocet_sluzeb AS (
+    SELECT pobyt_id, COUNT(*) AS pocet_sluzeb
+    FROM XVECER30.PozadavekNaSluzbu
+    GROUP BY pobyt_id
+  ),
+  prumer AS (
+    SELECT AVG(pocet_sluzeb) AS prumerny_pocet_sluzeb
+    FROM celkovy_pocet_sluzeb
+  )
+SELECT
+  celkovy_pocet_sluzeb.pobyt_id, celkovy_pocet_sluzeb.pocet_sluzeb,
+  CASE
+    WHEN celkovy_pocet_sluzeb.pocet_sluzeb >= prumer.prumerny_pocet_sluzeb THEN 'nadprumerna'
+    ELSE 'podprumerna'
+  END AS kategorie
+FROM celkovy_pocet_sluzeb, prumer
+ORDER BY pobyt_id;
