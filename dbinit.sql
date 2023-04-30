@@ -11,12 +11,13 @@ CREATE TABLE Pobyt (
     do DATE,
     zakaznik_id INTEGER,
     recepcni_id INTEGER,
+    is_free NUMBER(1),
     CONSTRAINT PK_pobyt PRIMARY KEY (pobyt_id)
 );
 
 CREATE TABLE Platba(
     platba_id NUMBER GENERATED ALWAYS AS IDENTITY,
-    castka DECIMAL(10,2) CHECK (castka > 0),
+    castka DECIMAL(10,2) CHECK (castka >= 0),
     typ_platby VARCHAR(20) CHECK ( typ_platby IN ('hotovost', 'karta') ),
     zaplaceno NUMBER(1),
     pobyt_id INTEGER,
