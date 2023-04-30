@@ -13,13 +13,6 @@ ELSE
 END IF;
 END;
 
---trigger, ktery vytvori ke kazdemu pobytu automaticky platbu (platba pouze za pokoje)
-CREATE OR REPLACE TRIGGER vytvoreni_platby_trigger
-AFTER INSERT ON Pobyt
-FOR EACH ROW
-BEGIN
-    INSERT INTO Platba(castka, typ_platby, zaplaceno, pobyt_id, recepcni_id) VALUES (0, NULL, 0, :new.pobyt_id, NULL);
-END;
 
 
 
