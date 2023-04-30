@@ -64,6 +64,23 @@ JOIN POKOJVPOBYTU Pvp on pob.POBYT_ID = Pvp.POBYT_ID
 JOIN POKOJ P on Pvp.POKOJ_ID = P.POKOJ_ID
 GROUP BY p.POKOJ_ID, p.POCET_LUZEK;
 
+-- EXPLAIN PLAN a vytvoreni indexu
+-- Kolik penez bylo celkove utraceno v pokojich s konkretnim poctem luzek
+EXPLAIN PLAN FOR
+SELECT p.POCET_LUZEK, COUNT(p.POKOJ_ID) AS pocet_pokoju, SUM(pl.CASTKA) AS celkova_castka
+FROM POKOJ p
+JOIN POKOJVPOBYTU rr ON p.POKOJ_ID = rr.POKOJ_ID
+JOIN Pobyt res ON rr.POBYT_ID = res.POBYT_ID
+JOIN PLATBA pl ON res.POBYT_ID = pl.POBYT_ID
+GROUP BY p.POCET_LUZEK;
+
+SELECT *
+FROM TABLE(DBMS_XPLAN.DISPLAY());
+
+CREATE INDEX idx_platba_pobyt_id ON PLATBA(POBYT_ID);
+
+DROP INDEX idx_platba_pobyt_id;
+
 -- Pobyty a celkovy pocet luzek
 SELECT pob.POBYT_ID, SUM(p.POCET_LUZEK) AS pocet_luzek FROM pobyt pob
 JOIN POKOJVPOBYTU Pvp on pob.POBYT_ID = Pvp.POBYT_ID
