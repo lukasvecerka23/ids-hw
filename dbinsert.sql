@@ -26,6 +26,8 @@ INSERT INTO Recepcni(uzivatel_id, uvazek, rodne_cislo, ulice, psc, cislo_popisne
 INSERT INTO Pobyt(od, do, zakaznik_id, recepcni_id) VALUES (TO_DATE('2022-05-23', 'YYYY-MM-DD'), TO_DATE('2022-05-30', 'YYYY-MM-DD'), 1, 1);
 INSERT INTO Pobyt(od, do, zakaznik_id, recepcni_id) VALUES (TO_DATE('2023-02-04', 'YYYY-MM-DD'), TO_DATE('2023-02-07', 'YYYY-MM-DD'), 2, 1);
 INSERT INTO Pobyt(od, do, zakaznik_id, recepcni_id) VALUES (TO_DATE('2023-02-05', 'YYYY-MM-DD'), TO_DATE('2018-02-10', 'YYYY-MM-DD'), 3, 2);
+INSERT INTO Pobyt(od, do, zakaznik_id, recepcni_id) VALUES (TO_DATE('2023-04-20', 'YYYY-MM-DD'), TO_DATE('2023-04-23', 'YYYY-MM-DD'), 1, 1);
+INSERT INTO Pobyt(od, do, zakaznik_id, recepcni_id) VALUES (TO_DATE('2023-04-25', 'YYYY-MM-DD'), TO_DATE('2023-04-28', 'YYYY-MM-DD'), 1, 1);
 
 INSERT INTO PokojVPobytu VALUES (1, 1);
 INSERT INTO PokojVPobytu VALUES (1, 2);
@@ -39,6 +41,6 @@ INSERT INTO PozadavekNaSluzbu VALUES (3, 1);
 
 INSERT INTO Platba(castka, typ_platby, zaplaceno, pobyt_id, recepcni_id) VALUES (1000, 'hotovost', 1, 1, 1);
 INSERT INTO Platba(castka, typ_platby, zaplaceno, pobyt_id, recepcni_id) VALUES (250, 'karta', 1, 1, 2);
-INSERT INTO Platba(castka, typ_platby, zaplaceno, pobyt_id, recepcni_id) VALUES (1500, NULL, 0, 2, 2);
+INSERT INTO Platba(castka, typ_platby, zaplaceno, pobyt_id, recepcni_id) VALUES (1500, NULL, 0, 2, NULL);
 INSERT INTO Platba(castka, typ_platby, zaplaceno, pobyt_id, recepcni_id) VALUES (750, 'karta', 1, 2, 1);
 INSERT INTO Platba(castka, typ_platby, zaplaceno, pobyt_id, recepcni_id) VALUES (100, 'hotovost', 1, 3, 1);
