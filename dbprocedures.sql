@@ -26,7 +26,7 @@ DECLARE
     l_reservations SYS_REFCURSOR;
     l_reservation_row Pobyt%ROWTYPE;
 BEGIN
-    get_customer_reservations(2, l_reservations);
+    get_customer_reservations(1, l_reservations);
     LOOP
         FETCH l_reservations INTO l_reservation_row;
         EXIT WHEN l_reservations%NOTFOUND;
