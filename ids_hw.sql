@@ -514,6 +514,7 @@ FROM TABLE(DBMS_XPLAN.DISPLAY());
 
 -- Vytvoreni indexu na sloupec platba.pobyt_id
 CREATE INDEX idx_platba_pobyt_id ON PLATBA(POBYT_ID);
+DROP INDEX idx_platba_pobyt_id;
 
 -- Po vytvoreni indexu
 EXPLAIN PLAN FOR
